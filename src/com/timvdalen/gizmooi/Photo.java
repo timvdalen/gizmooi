@@ -8,6 +8,7 @@ import org.xmlpull.v1.XmlPullParser;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.DisplayMetrics;
 
 /**
  * Represents a photo in the widget
@@ -80,5 +81,20 @@ public class Photo{
 	 */
 	public Bitmap getBitmap() throws IOException{
 		return BitmapFactory.decodeStream(this.getUrl().openConnection().getInputStream());
+	}
+	
+	/**
+	 * Gets a Bitmap representation of this Photo which fits in the screen
+	 * 
+	 * @return Bitmap representation of this Photo
+	 * @throws IOException if there is a network error
+	 */
+	public Bitmap getBitmap(DisplayMetrics dm, int sample) throws IOException{
+		int size = (dm.heightPixels > dm.widthPixels) ? dm.heightPixels : dm.widthPixels;
+		size /= sample;
+		
+		URL image = new URL("http://timvdalen.nl/projects/gizmooi/image/getimage.php?photo=" + this.getUrl().toString() + "&size=" + Integer.toString(size));
+		
+		return BitmapFactory.decodeStream(image.openConnection().getInputStream());
 	}
 }

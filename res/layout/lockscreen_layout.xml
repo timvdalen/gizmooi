@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/imgMooi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/image_compat"
         android:scaleType="centerCrop"
-        android:src="@drawable/preview"
-        android:contentDescription="@string/image_compat" />
+        android:src="@drawable/preview" />
 
 </LinearLayout>

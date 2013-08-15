@@ -32,7 +32,7 @@ public class FlickrAPIHandler{
 		values.put("per_page", "1");
 		values.put("extras", "owner_name,url_o");
 	}
-
+	
 	/**
 	 * Returns the API endpoint
 	 * @return The API endpoint that is to be used
