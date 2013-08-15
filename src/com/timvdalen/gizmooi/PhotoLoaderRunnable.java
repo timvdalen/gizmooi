@@ -68,7 +68,8 @@ public class PhotoLoaderRunnable implements Runnable{
 			Intent intent = new Intent(this.context, ToastShowActivity.class);
 			intent.putExtra("title", this.photo.getTitle());
 			intent.putExtra("owner", this.photo.getOwner());
-			PendingIntent pendingIntent = PendingIntent.getActivity(this.context, 0, intent, 0);
+			
+			PendingIntent pendingIntent = PendingIntent.getActivity(this.context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 			
 			views.setOnClickPendingIntent(R.id.imgMooi, pendingIntent);
 			
