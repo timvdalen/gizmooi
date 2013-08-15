@@ -25,12 +25,12 @@ public class FlickrAPIHandler{
 	static{
 		values = new HashMap<String, String>();
 		values.put("group_id", "78249294@N00");
-		values.put("license", "4");
+		values.put("license", "1,2,3,4,5,6");
 		values.put("safe_search", "1");
 		values.put("content_type", "1");
 		values.put("media", "photo");
 		values.put("per_page", "1");
-		values.put("extras", "owner_name,url_o");
+		values.put("extras", "owner_name,url_o,license");
 	}
 	
 	/**

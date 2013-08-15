@@ -1,6 +1,7 @@
 package com.timvdalen.gizmooi;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -13,13 +14,17 @@ import android.util.DisplayMetrics;
 /**
  * Represents a photo in the widget
  */
-public class Photo{
+public class Photo implements Serializable{
+	//* For serialization
+	private static final long serialVersionUID = 8941984070066448361L;
 	//* The URL to this photo
 	private URL url;
 	//* The photo's title, for attribution
 	private String title;
 	//* The photo's owner, for attribution
 	private String owner;
+	//* The photo's license, for attribution
+	private License license;
 
 	/**
 	 * Creates a new Photo based on its attributes
@@ -27,16 +32,18 @@ public class Photo{
 	 * @param url
 	 * @param title
 	 * @param owner
+	 * @param license
 	 */
-	public Photo(URL url, String title, String owner){
+	public Photo(URL url, String title, String owner, License license){
 		this.url = url;
 		this.title = title;
 		this.owner = owner;
+		this.license = license;
 	}
 	
 	/**
 	 * Creates a new Photo based on a Flickr API XML element of the form:
-	 * 		<photo title="{title}" ownername="{owner}" url_o="{url}"/>
+	 * 		<photo title="{title}" ownername="{owner}" url_o="{url}" license="{license}"/>
 	 * @param parser
 	 * @throws MalformedURLException when the Photo URL is malformed
 	 */
@@ -47,6 +54,7 @@ public class Photo{
 		this.url = new URL(parser.getAttributeValue(null, "url_o"));
 		this.title = parser.getAttributeValue(null, "title");
 		this.owner = parser.getAttributeValue(null, "ownername");
+		this.license = License.parseInt(Integer.parseInt(parser.getAttributeValue(null, "license")));
 	}
 
 	public URL getUrl(){
@@ -61,6 +69,10 @@ public class Photo{
 		return owner;
 	}
 
+	public License getLicense(){
+		return license;
+	}
+
 	public void setUrl(URL url){
 		this.url = url;
 	}
@@ -71,6 +83,10 @@ public class Photo{
 
 	public void setOwner(String owner){
 		this.owner = owner;
+	}
+	
+	public void setLicense(License license){
+		this.license = license;
 	}
 	
 	/**

@@ -18,14 +18,10 @@ public class ToastShowActivity extends Activity{
 		
 		// Get data from click Intent
 		Intent intent = getIntent();
-		
-		String title = intent.getStringExtra("title");
-		String owner = intent.getStringExtra("owner");
-		
-		String license = "CC-BY";
+		Photo photo = (Photo) intent.getSerializableExtra("photo");
 		
 		// Show the attribution data
-		String txtToast = title + " / " + owner + " - " + license;
+		String txtToast = photo.getTitle() + " / " + photo.getOwner() + " - " + photo.getLicense();
 		
 		Toast.makeText(getBaseContext(), txtToast, Toast.LENGTH_SHORT).show();
 		

@@ -66,8 +66,7 @@ public class PhotoLoaderRunnable implements Runnable{
 			
 			// Setup click handler
 			Intent intent = new Intent(this.context, ToastShowActivity.class);
-			intent.putExtra("title", this.photo.getTitle());
-			intent.putExtra("owner", this.photo.getOwner());
+			intent.putExtra("photo", this.photo);
 			
 			PendingIntent pendingIntent = PendingIntent.getActivity(this.context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 			
@@ -107,4 +106,3 @@ public class PhotoLoaderRunnable implements Runnable{
 		return isKeyguard ? R.layout.lockscreen_layout : R.layout.widget_layout;
 	}
 }
-
